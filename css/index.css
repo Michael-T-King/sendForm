@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.btn {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #70cdfc;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  &:active {
+    background-color: #c0e5f8;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 20;
+}
+
+.wrapper.show {
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.popup {
+  position: relative;
+  width: 25rem;
+  height: 45rem;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  z-index: 21;
+}
+
+.popup::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(51, 51, 51, 0.9) url('../images/loading.gif') center 10rem no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease 0s;
+}
+
+.popup._sending::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn__close {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  right: 2rem;
+  top: 1rem;
+  color: #999;
+  cursor: pointer;
+
+  &:hover {
+    color: #555;
+  }
+
+  &:active {
+    color: #edf0f1;
+  }
+}
+
+.popup__title {
+  position: relative;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  width: fit-content;
+  color: #00f;
+  cursor: default;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #555;
+  background-color: inherit;
+  height: 2rem;
+  width: 20rem;
+  padding: 0.5rem;
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+
+  &:focus {
+    border-bottom: 2px solid #00f;
+    outline: none;
+  }
+}
+
+.label__name {
+  position: fixed;
+  margin-top: -0.7rem;
+  width: fit-content;
+  transition: 0.3s ease;
+  font-size: 1rem;
+}
+
+.input:focus+.label__name {
+  margin-top: -1.5rem;
+  font-size: 0.7rem;
+  color: #00f;
+  margin-left: -0.5rem;
+}
+
+.label__name span {
+  color: #f00;
+  margin-left: 0.2rem;
+}
+
+.checkbox-container {
+  position: relative;
+  display: flex;
+  margin: 0.5rem;
+  padding: 0 2.5rem;
+  width: 100%;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  margin: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: #00f;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  transition: color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #00f;
+  }
+}
+
+.checkbox-container-agree {
+  position: relative;
+  display: flex;
+  border: 1px solid #999;
+  border-radius: 0.5rem;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  padding: 1rem 0.5rem;
+  transition: box-shadow 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.checkbox__agreevment {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-label-agree {
+  position: relative;
+  transition: color 0.5s ease;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &:hover {
+    color: #00f;
+  }
+}
+
+.submit {
+  padding: 0.5rem;
+  background-color: #f9b238;
+
+  &:active {
+    background-color: #fdd58f;
+  }
+}
+
+.input._error {
+  border-bottom: 1px solid #f00;
+}
+
+.checkbox-container-agree._error {
+  border: 1px solid #f00;
+  box-shadow: 0 0 3px #f00;
+}
+
+.checkbox__agreevment._error {
+  box-shadow: 0 0 3px #f00;
+}
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма обратной связи</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+  <section class="section">
+    <button class="btn btn__form">Форма обратной связи</button>
+
+    <div class="wrapper">
+      <div class="popup">
+        <button class="btn__close">X</button>
+
+        <h1 class="popup__title">Форма обратной связи</h1>
+        <form action="#" class="form" id="form">
+          <div class="input-container">
+            <input id="input__name" class="input _req" type="text" name="name">
+            <label for="input__name" class="label__name">Ф.И.О.<span>*</span></label>
+          </div>
+          <div class="input-container">
+            <input id="input__email" class="input _req _email" type="email" name="email">
+            <label for="input__email" class="label__name">Email<span>*</span></label>
+          </div>
+          <div class="input-container">
+            <input id="input__phone" class="input _req" type="tel" name="phone">
+            <label for="input__phone" class="label__name">Телефон<span>*</span></label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="checkbox1" name="checkbox1" class="checkbox-input">
+            <label for="checkbox1" class="checkbox-label">Чекбокс 1</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="checkbox2" name="checkbox2" class="checkbox-input">
+            <label for="checkbox2" class="checkbox-label">Чекбокс 2</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="checkbox3" name="checkbox3" class="checkbox-input">
+            <label for="checkbox3" class="checkbox-label">Чекбокс 3</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" id="checkbox4" name="checkbox4" class="checkbox-input">
+            <label for="checkbox4" class="checkbox-label">Чекбокс 4</label>
+          </div>
+          <div class=" checkbox-container-agree">
+            <input type="checkbox" id="agreevment" name="agreevment" class="checkbox-input checkbox__agreevment _req"
+              checked>
+            <label for="agreevment" class="checkbox-label-agree">Согласиться на обработку персональных данных</label>
+          </div>
+
+
+          <button type="submit" class="btn submit">Отправить</button>
+        </form>
+
+
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
