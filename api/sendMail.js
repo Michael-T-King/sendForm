@@ -24,9 +24,9 @@ export default async function handler(req, res) {
       subject: 'Новая обратная связь',
       html: body,
     };
-
+    console.log('отправка письма:', msg);
     try {
-      console.log('Sending email with the following message object:', msg);
+      console.log('отправка письма:', msg);
       await mg.messages.create(process.env.MAILGUN_DOMAIN, msg);
       res.status(200).json({ message: 'Письмо успешно отправлено!' });
     } catch (error) {
