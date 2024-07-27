@@ -19,8 +19,8 @@ export default async function handler(req, res) {
     `;
 
     const msg = {
-      from: 'michaeltitarenko@gmail.com',
-      to: 'michaeltitarenko@gmail.com',
+      from: 'michaeltitarenko@gmail.comsandboxdc0c79ac17a048029e4f1bbad89e9857.mailgun.org',
+      to: 'michaeltitarenko@gmail.comsandboxdc0c79ac17a048029e4f1bbad89e9857.mailgun.org',
       subject: 'Новая обратная связь',
       html: body,
     };
