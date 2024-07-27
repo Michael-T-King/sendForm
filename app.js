@@ -32,10 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
   
     if (error === 0) {
       try {
-        let response = await fetch('/api/send-mail', {
+        let response = await fetch('/api/sendMail', {
           method: 'POST',
           body: formData,
         });
+        console.log(response)
   
         if (response.ok) {
           let result = await response.json();
