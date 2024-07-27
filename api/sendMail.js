@@ -1,7 +1,7 @@
 const formData = require('form-data');
 const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(formData);
-const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
+const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -24,11 +24,12 @@ export default async function handler(req, res) {
     };
 
     try {
-      await mg.messages.create('sandboxdc0c79ac17a048029e4f1bbad89e9857.mailgun.org', msg);
+      console.log('Sending email with the following message object:', msg);
+      await mg.messages.create(process.env.MAILGUN_DOMAIN, msg);
       res.status(200).json({ message: 'Письмо успешно отправлено!' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Ошибка при отправке письма' });
+      console.error('Error while sending email:', error);
+      res.status(500).json({ error: 'Ошибка при отправке письма', details: error.message });
     }
   } else {
     res.setHeader('Allow', ['POST']);
