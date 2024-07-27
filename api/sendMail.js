@@ -1,19 +1,23 @@
-import Mailgun from 'mailgun.js';
-import formData from 'form-data';
+"use strict";
 
+const formData = require('form-data');
+const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(formData);
-const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY });
+
+const apiKey = process.env.MAILGUN_API_KEY; // Ваш API-ключ
+const domain = process.env.MAILGUN_DOMAIN; // Ваш домен
+
+if (!apiKey || !domain) {
+  throw new Error('API ключ и домен должны быть указаны в переменных окружения');
+}
+
+const mg = mailgun.client({ username: 'api', key: apiKey });
 
 export default async function handler(req, res) {
-  console.log('Received request:', req.method);
-  console.log('Received POST request with body:', req.body);
-
   if (req.method === 'POST') {
+    console.log('Received POST request with body:', req.body);
+    
     const { name, email, phone, checkbox1, checkbox2, checkbox3, checkbox4, agreevment } = req.body;
-
-    if (!name || !email || !phone || agreevment === undefined) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
 
     const body = `
       <h1>Новое письмо от:</h1>
@@ -32,8 +36,8 @@ export default async function handler(req, res) {
     };
 
     try {
-      const response = await mg.messages.create(process.env.MAILGUN_DOMAIN, msg);
-      console.log('Mailgun response:', response);
+      console.log('Отправка письма:', msg);
+      await mg.messages.create(domain, msg);
       res.status(200).json({ message: 'Письмо успешно отправлено!' });
     } catch (error) {
       console.error('Ошибка при отправке письма:', error);
