@@ -34,6 +34,14 @@ document.addEventListener("DOMContentLoaded", function () {
       data[key] = value;
     });
 
+    // Добавляем имена выбранных чекбоксов в данные
+    const checkboxes = form.querySelectorAll("input[type='checkbox']");
+    const selectedCheckboxes = Array.from(checkboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.name);
+
+    data.selectedCheckboxes = selectedCheckboxes;
+
     if (error === 0) {
       try {
         let response = await fetch('/api/sendMail', {
@@ -43,8 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           body: JSON.stringify(data),
         });
-        console.log(response)
-  
+
         if (response.ok) {
           let result = await response.json();
           alert(result.message);

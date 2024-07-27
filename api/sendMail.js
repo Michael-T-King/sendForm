@@ -17,14 +17,14 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     console.log('Received POST request with body:', req.body);
     
-    const { name, email, phone, checkbox1, checkbox2, checkbox3, checkbox4, agreevment } = req.body;
+    const { name, email, phone, selectedCheckboxes, agreevment } = req.body;
 
     const body = `
       <h1>Новое письмо от:</h1>
       <p><strong>Имя:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Телефон:</strong> ${phone}</p>
-      <p><strong>Чекбоксы:</strong> ${[checkbox1, checkbox2, checkbox3, checkbox4].filter(Boolean).join(', ')}</p>
+      <p><strong>Чекбоксы:</strong> ${selectedCheckboxes ? selectedCheckboxes.join(', ') : 'Нет'}</p>
       <p><strong>Согласие на обработку персональных данных:</strong> ${agreevment ? 'Да' : 'Нет'}</p>
     `;
 
