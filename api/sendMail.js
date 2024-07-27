@@ -5,6 +5,8 @@ const mg = mailgun.client({ username: 'api', key: process.env.MAILGUN_API_KEY })
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
+    console.log('Received POST request with body:', req.body);
+    
     const { name, email, phone, checkbox1, checkbox2, checkbox3, checkbox4, agreevment } = req.body;
 
     const body = `
