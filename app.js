@@ -28,20 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     let error = formValidate(form);
 
-    let formData = new FormData(form);
-
     if (error === 0) {
       poPup.classList.add('_sending');
-      let response = await fetch("sendmail.php", {
-        method: "POST",
+      let formData = new FormData(form);
+      let response = await fetch('/api/sendMail', {
+        method: 'POST',
         body: formData,
       });
+
       if (response.ok) {
         let result = await response.json();
         alert(result.message);
         form.reset();
         poPup.classList.remove('_sending');
-        Wrapper.classList.remove('show');
       } else {
         alert("Что-то пошло не так!");
         poPup.classList.remove('_sending');
