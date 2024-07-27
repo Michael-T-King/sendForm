@@ -29,12 +29,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let error = formValidate(form);
   
     let formData = new FormData(form);
-  
+    let data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
     if (error === 0) {
       try {
         let response = await fetch('/api/sendMail', {
           method: 'POST',
-          body: formData,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data),
         });
         console.log(response)
   
@@ -55,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert('Заполните обязательные поля');
     }
   }
-  
 
   function formValidate(form) {
     let error = 0;
