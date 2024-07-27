@@ -1,3 +1,7 @@
+/* для успешного использования формы обратной связи нужно пройти регистрацию на https://app.mailgun.com/
+  далее на https://vercel.com/ связать с гитом и в проекте добавить в переменные ключ- MAILGUN_API_KEY и в значение API KEY и домен - MAILGUN_DOMAIN  со значением  домена из https://app.mailgun.com/
+*/
+
 "use strict";
 
 const formData = require('form-data');
