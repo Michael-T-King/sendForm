@@ -1,5 +1,7 @@
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const formData = require('form-data');
+const Mailgun = require('mailgun.js');
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY});
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -15,14 +17,14 @@ export default async function handler(req, res) {
     `;
 
     const msg = {
+      from: 'your-email@example.com',
       to: 'michaeltitarenko@gmail.com',
-      from: 'm.tech.05.michael@gmail.com',
       subject: 'Новая обратная связь',
       html: body,
     };
 
     try {
-      await sgMail.send(msg);
+      await mg.messages.create('YOUR_DOMAIN_NAME', msg);
       res.status(200).json({ message: 'Письмо успешно отправлено!' });
     } catch (error) {
       console.error(error);

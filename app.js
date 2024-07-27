@@ -27,28 +27,34 @@ document.addEventListener("DOMContentLoaded", function () {
   async function formSend(e) {
     e.preventDefault();
     let error = formValidate(form);
-
+  
+    let formData = new FormData(form);
+  
     if (error === 0) {
-      poPup.classList.add('_sending');
-      let formData = new FormData(form);
-      let response = await fetch('/api/sendMail', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        let result = await response.json();
-        alert(result.message);
-        form.reset();
-        poPup.classList.remove('_sending');
-      } else {
-        alert("Что-то пошло не так!");
-        poPup.classList.remove('_sending');
+      try {
+        let response = await fetch('/api/send-mail', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        if (response.ok) {
+          let result = await response.json();
+          alert(result.message);
+          form.reset();
+          poPup.classList.remove('_sending');
+        } else {
+          alert('Что-то пошло не так!');
+          poPup.classList.remove('_sending');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Ошибка при отправке письма');
       }
     } else {
-      alert("Заполните обязательные поля");
+      alert('Заполните обязательные поля');
     }
   }
+  
 
   function formValidate(form) {
     let error = 0;
