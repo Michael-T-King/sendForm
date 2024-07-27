@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     };
 
     try {
-      await mg.messages.create('YOUR_DOMAIN_NAME', msg);
+      await mg.messages.create('sandboxdc0c79ac17a048029e4f1bbad89e9857.mailgun.org', msg);
       res.status(200).json({ message: 'Письмо успешно отправлено!' });
     } catch (error) {
       console.error(error);
